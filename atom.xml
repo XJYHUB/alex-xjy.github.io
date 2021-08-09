@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Alex</title>
+  
+  <subtitle>Alex的小窝</subtitle>
+  <link href="https://xjyhub.github.io/alex-xjy.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://xjyhub.github.io/alex-xjy.github.io/"/>
+  <updated>2021-08-08T16:16:54.171Z</updated>
+  <id>https://xjyhub.github.io/alex-xjy.github.io/</id>
+  
+  <author>
+    <name>Alex</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Test</title>
+    <link href="https://xjyhub.github.io/alex-xjy.github.io/2021/08/09/test/"/>
+    <id>https://xjyhub.github.io/alex-xjy.github.io/2021/08/09/test/</id>
+    <published>2021-08-08T16:16:54.000Z</published>
+    <updated>2021-08-08T16:16:54.171Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">
+</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分块入门</title>
+    <link href="https://xjyhub.github.io/alex-xjy.github.io/2021/08/08/fen-kuai-ru-men/"/>
+    <id>https://xjyhub.github.io/alex-xjy.github.io/2021/08/08/fen-kuai-ru-men/</id>
+    <published>2021-08-08T03:42:35.000Z</published>
+    <updated>2021-08-08T15:27:07.883Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;分块入门&quot;&gt;分块入门&lt;/h1&gt;
+&lt;h2 id=&quot;引言&quot;&gt;&lt;strong&gt;引言&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;何为分块&quot;&gt;&lt;strong&gt;&lt;span class=&quot;math</summary>
+        
+      
+    
+    
+    
+    
+    <category term="数据结构" scheme="https://xjyhub.github.io/alex-xjy.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+</feed>
