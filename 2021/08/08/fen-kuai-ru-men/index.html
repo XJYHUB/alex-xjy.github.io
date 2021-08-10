@@ -26,14 +26,10 @@
     <link rel="stylesheet" type="text/css" href="/alex-xjy.github.io/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/alex-xjy.github.io/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/alex-xjy.github.io/css/my.css">
-    <link rel="stylesheet" href="/css/snow.css">
-	<div id="snowzone"></div> 
-	<script src="/js/snow.js"></script>
     <script src="/alex-xjy.github.io/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/alex-xjy.github.io/atom.xml" title="Alex" type="application/atom+xml">
-<link rel="stylesheet" href="/alex-xjy.github.io/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/alex-xjy.github.io/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 
@@ -750,6 +746,33 @@
             
         </div>
     </div>
+
+    
+        <link rel="stylesheet" href="/alex-xjy.github.io/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/alex-xjy.github.io/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/alex-xjy.github.io/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: null,
+        id: '2021-08-08T11-42-35',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
 
     
 
