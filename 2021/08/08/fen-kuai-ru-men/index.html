@@ -506,9 +506,7 @@
 <h2 id="solution"><strong><span class="math inline">\(Solution:\)</span></strong></h2>
 <p>首先对数据规模进行分析，暴力肯定会超时。这可以用树状数组和线段树，但在这，我们用分块来做。<br />
 分块，首先就要确定“块”的长度，方便起见,我们记<span class="math inline">\(m\)</span>为块的长度。通常情况下，我们以<span class="math inline">\(\lfloor \sqrt{n}\rfloor\)</span>作为块的长度，即<span class="math inline">\(m=\lfloor \sqrt{n}\rfloor\)</span>。当然，大多数情况下，<span class="math inline">\(n\)</span>未必是一个完全平方数，也就是说，结尾部分会有不足。这时，我们只要单独处理就可以了。因此，我们可以将序列分成如下所示(方便起见，此处<span class="math inline">\(m\)</span>取<span class="math inline">\(2\)</span>)：</p>
-<figure>
-<img src="https://img2020.cnblogs.com/blog/2458302/202107/2458302-20210725150111260-1333677383.png" alt="image" /><figcaption>image</figcaption>
-</figure>
+<p><img src="https://s3.bmp.ovh/imgs/2021/08/02fa725b2cf21669.png" /></p>
 <p>首先，我们要确定每个块的位置。因此，我们定义<span class="math inline">\(l\)</span>数组与<span class="math inline">\(r\)</span>数组，作为每个块的左端点与右端点。不难得出，<span class="math inline">\(l_i=(i-1)×m+1,r_i=i×m\)</span>。如果有多余的部分，则令<span class="math inline">\(l_i=(i-1)×m+1,r_i=n\)</span>。<br />
 <span class="math inline">\(Code:\)</span></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="dt">int</span> num=n/m;<span class="co">//求出总块数</span></a>
