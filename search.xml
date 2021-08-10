@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title>CF1530B</title>
+      <link href="/alex-xjy.github.io/2021/08/11/cf1530b/"/>
+      <url>/alex-xjy.github.io/2021/08/11/cf1530b/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/1530/B">题目链接</a></p><h4 id="题目大意">题目大意：</h4><p>求一个h*w的01矩阵，并且使矩阵中的每两个值为<span class="math inline">\(1\)</span>的点 <span class="math inline">\((x1,y1)(x2,y2)\)</span> 满足 <span class="math inline">\(|x1-x2|+|y1-y2|\gt 1\)</span>.</p><h3 id="solution">Solution:</h3><p>本题是贪心思想，考虑枚举每一个点，如果满足要求，则赋值为1 ，否则为0.最终得到的矩阵即为所求，输出即可AC 。</p><h3 id="code">Code:</h3><div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></a><a class="sourceLine" id="cb1-2" title="2"><span class="pp">#define ll </span><span class="dt">long</span><span class="pp"> </span><span class="dt">long</span></a><a class="sourceLine" id="cb1-3" title="3"><span class="pp">#define _for</span>(i,a,b)<span class="pp"> </span><span class="cf">for</span>(<span class="dt">int</span><span class="pp"> </span>i=(a);i&lt;=(b);i++)</a><a class="sourceLine" id="cb1-4" title="4"> </a><a class="sourceLine" id="cb1-5" title="5"><span class="kw">namespace</span> FastIOstream&#123;</a><a class="sourceLine" id="cb1-6" title="6">    <span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt; <span class="kw">inline</span> <span class="dt">void</span> read(T &amp;x)&#123;<span class="co">//Fast read</span></a><a class="sourceLine" id="cb1-7" title="7">        x=<span class="dv">0</span>;<span class="dt">int</span> f=<span class="dv">1</span>;<span class="dt">char</span> c=getchar();</a><a class="sourceLine" id="cb1-8" title="8">        <span class="cf">for</span>(;!isdigit(c);)&#123;<span class="cf">if</span>(c==<span class="ch">&#39;-&#39;</span>)f=-<span class="dv">1</span>;c=getchar();&#125;</a><a class="sourceLine" id="cb1-9" title="9">        <span class="cf">for</span>(;isdigit(c);)&#123;x=(x&lt;&lt;<span class="dv">1</span>)+(x&lt;&lt;<span class="dv">3</span>)+c-<span class="dv">48</span>;c=getchar();&#125;</a><a class="sourceLine" id="cb1-10" title="10">        x*=f;<span class="cf">return</span>;</a><a class="sourceLine" id="cb1-11" title="11">    &#125;</a><a class="sourceLine" id="cb1-12" title="12">    <span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt; <span class="dt">void</span> print(T x)&#123;<span class="co">//Fast print</span></a><a class="sourceLine" id="cb1-13" title="13">        <span class="cf">if</span>(x&lt;<span class="dv">0</span>)&#123;x=-x;putchar(<span class="ch">&#39;-&#39;</span>);&#125;<span class="cf">if</span>(x&gt;<span class="dv">9</span>)print((x&gt;&gt;<span class="dv">1</span>)/<span class="dv">5</span>);</a><a class="sourceLine" id="cb1-14" title="14">        putchar(x%<span class="dv">10</span>+<span class="dv">48</span>);<span class="cf">return</span>;</a><a class="sourceLine" id="cb1-15" title="15">    &#125;</a><a class="sourceLine" id="cb1-16" title="16">&#125;</a><a class="sourceLine" id="cb1-17" title="17">     </a><a class="sourceLine" id="cb1-18" title="18"><span class="kw">using</span> <span class="kw">namespace</span> std;</a><a class="sourceLine" id="cb1-19" title="19"><span class="kw">using</span> <span class="kw">namespace</span> FastIOstream;</a><a class="sourceLine" id="cb1-20" title="20"> </a><a class="sourceLine" id="cb1-21" title="21"><span class="dt">int</span> t,f[<span class="dv">25</span>][<span class="dv">25</span>],tf[<span class="dv">25</span>][<span class="dv">25</span>];</a><a class="sourceLine" id="cb1-22" title="22"> </a><a class="sourceLine" id="cb1-23" title="23"><span class="dt">bool</span> check(<span class="dt">int</span> x,<span class="dt">int</span> y,<span class="dt">int</span> n,<span class="dt">int</span> m)&#123;</a><a class="sourceLine" id="cb1-24" title="24">    <span class="cf">if</span>(f[x][y]||f[x-<span class="dv">1</span>][y]||f[x][y-<span class="dv">1</span>]||f[x+<span class="dv">1</span>][y]||f[x][y+<span class="dv">1</span>]||f[x+<span class="dv">1</span>][y+<span class="dv">1</span>]||f[x-<span class="dv">1</span>][y-<span class="dv">1</span>]||f[x-<span class="dv">1</span>][y+<span class="dv">1</span>]||f[x+<span class="dv">1</span>][y-<span class="dv">1</span>])<span class="cf">return</span> <span class="dv">0</span>;</a><a class="sourceLine" id="cb1-25" title="25">    <span class="cf">return</span> <span class="dv">1</span>;</a><a class="sourceLine" id="cb1-26" title="26">&#125;</a><a class="sourceLine" id="cb1-27" title="27">     </a><a class="sourceLine" id="cb1-28" title="28"><span class="dt">signed</span> main()&#123;</a><a class="sourceLine" id="cb1-29" title="29">    read(t);</a><a class="sourceLine" id="cb1-30" title="30">    <span class="cf">for</span>(<span class="dt">int</span> T=<span class="dv">1</span>;T&lt;=t;T++)&#123;</a><a class="sourceLine" id="cb1-31" title="31">        memset(tf,<span class="dv">0</span>,<span class="kw">sizeof</span>(tf));</a><a class="sourceLine" id="cb1-32" title="32">        <span class="dt">int</span> n,m,ans=<span class="dv">0</span>;</a><a class="sourceLine" id="cb1-33" title="33">        read(n);</a><a class="sourceLine" id="cb1-34" title="34">        read(m);</a><a class="sourceLine" id="cb1-35" title="35">        <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=n;i++)&#123;</a><a class="sourceLine" id="cb1-36" title="36">            tf[i][<span class="dv">1</span>]=<span class="dv">1</span>;</a><a class="sourceLine" id="cb1-37" title="37">            tf[i][m]=<span class="dv">1</span>;</a><a class="sourceLine" id="cb1-38" title="38">        &#125;</a><a class="sourceLine" id="cb1-39" title="39">        <span class="cf">for</span>(<span class="dt">int</span> j=<span class="dv">1</span>;j&lt;=m;j++)&#123;</a><a class="sourceLine" id="cb1-40" title="40">            tf[<span class="dv">1</span>][j]=<span class="dv">1</span>;</a><a class="sourceLine" id="cb1-41" title="41">            tf[n][j]=<span class="dv">1</span>;</a><a class="sourceLine" id="cb1-42" title="42">        &#125;</a><a class="sourceLine" id="cb1-43" title="43">        <span class="dt">int</span> x=n&gt;&gt;<span class="dv">1</span>;</a><a class="sourceLine" id="cb1-44" title="44">        <span class="cf">if</span>(n&amp;<span class="dv">1</span>)x++; </a><a class="sourceLine" id="cb1-45" title="45">        <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=n;i++)&#123;</a><a class="sourceLine" id="cb1-46" title="46">            <span class="cf">for</span>(<span class="dt">int</span> j=<span class="dv">1</span>;j&lt;=m;j++)&#123;</a><a class="sourceLine" id="cb1-47" title="47">                <span class="cf">if</span>(tf[i][j]&amp;&amp;check(i,j,n,m))&#123;</a><a class="sourceLine" id="cb1-48" title="48">                    ans++;</a><a class="sourceLine" id="cb1-49" title="49">                    f[i][j]=<span class="dv">1</span>;</a><a class="sourceLine" id="cb1-50" title="50">                &#125;</a><a class="sourceLine" id="cb1-51" title="51">            &#125;</a><a class="sourceLine" id="cb1-52" title="52">        &#125;</a><a class="sourceLine" id="cb1-53" title="53">        <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=n;i++)&#123;</a><a class="sourceLine" id="cb1-54" title="54">            <span class="cf">for</span>(<span class="dt">int</span> j=<span class="dv">1</span>;j&lt;=m;j++)&#123;</a><a class="sourceLine" id="cb1-55" title="55">                cout &lt;&lt; f[i][j];</a><a class="sourceLine" id="cb1-56" title="56">                f[i][j]=<span class="dv">0</span>;</a><a class="sourceLine" id="cb1-57" title="57">            &#125;</a><a class="sourceLine" id="cb1-58" title="58">            puts(<span class="st">&quot; &quot;</span>);</a><a class="sourceLine" id="cb1-59" title="59">        &#125;</a><a class="sourceLine" id="cb1-60" title="60">    &#125;</a><a class="sourceLine" id="cb1-61" title="61">    <span class="cf">return</span> <span class="dv">0</span>;</a><a class="sourceLine" id="cb1-62" title="62">&#125;</a></code></pre></div>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Codeforces </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CF1108C</title>
+      <link href="/alex-xjy.github.io/2021/08/11/cf1108c/"/>
+      <url>/alex-xjy.github.io/2021/08/11/cf1108c/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/1108/C">题目链接</a></p><p>本题要我们修改最少的字符使 <span class="math inline">\(s_i=s_j\)</span> 且 <span class="math inline">\(i\equiv j\)</span> (<em>mod</em> 3).用人话来讲就是使令'R' 'G' 'B'三个字母构成的循环节构成一个字符串 <span class="math inline">\(s&#39;\)</span>。使</p><p>$$ ,m; string a[7]; int n,pos,num=1e9;</p><p>signed main(){ s[1]="RGB";s[2]="RBG";s[3]="BRG"; s[4]="BGR";s[5]="GBR";s[6]="GRB"; read(n); cin &gt;&gt; m; int k=n/3+1; for(register int i=1;i&lt;=6;++i){ for(register int j=1;j&lt;=k;++j){ a[i]+=s[i]; } int sum=0; for(register int j=0;j&lt;n;++j){ if(m[j]!=a[i][j])sum++; } if(sum&lt;num){ num=sum; pos=i; } } print(num); putchar(''); for(register int i=0;i&lt;n;++i){ putchar(a[pos][i]); } putchar(''); return 0; } ```</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Codeforces </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CF1557A</title>
+      <link href="/alex-xjy.github.io/2021/08/11/cf1557a/"/>
+      <url>/alex-xjy.github.io/2021/08/11/cf1557a/</url>
+      
+        <content type="html"><![CDATA[<p><a href="http://codeforces.com/problemset/problem/1557/A">题目链接</a></p><p>这是一道简单思维题，不难得出，要想使两个子序列平均值最大化，只要在原序列中取个最大值。使这个最大单独组成一个集合，剩余的数为另一个集合。在这样的分法下，两序列的平均数之和必定是最大的。下面是代码：</p><pre><code>#include &lt;bits/stdc++.h&gt;//#define int long long#define AK 1#define rep(i,a,b) for(register int i=a;i&lt;=b;++i)#define per(i,a,b) for(register int i=a;i&gt;=b;--i)namespace FastIOstream&#123;    inline void read(int &amp;x)&#123;//Fast read        x=0;int f=1;char c=getchar();        for(;!isdigit(c);)&#123;if(c==&#39;-&#39;)f=-1;c=getchar();&#125;        for(;isdigit(c);)&#123;x=(x&lt;&lt;1)+(x&lt;&lt;3)+c-48;c=getchar();&#125;        x*=f;return;    &#125;    void print(int x)&#123;//Fast print        if(x&lt;0)&#123;x=-x;putchar(&#39;-&#39;);&#125;if(x&gt;9)print((x&gt;&gt;1)/5);        putchar(x%10+48);return;    &#125;&#125;namespace Algorithm&#123;    inline int fast_power(int base,int exp)&#123;        int res=1;        for(;exp;)&#123;if(exp&amp;1)res*=base;base*=base;exp&gt;&gt;=1;&#125;        return res;    &#125;    int GCD(int x,int y)&#123;return y?x:GCD(y,x%y);&#125;&#125;using namespace std;using namespace FastIOstream;using namespace Algorithm;double a[(int)(1e6+5)];void work()&#123;    int n;    double maxn=(double)(-(1&lt;&lt;30))*1.0000000000,sum=0.00000000;    read(n);    rep(i,1,n)&#123;        scanf(&quot;%lf&quot;,&amp;a[i]);        sum+=a[i];        maxn=max(maxn,a[i]);    &#125;    printf(&quot;%.9lf\n&quot;,maxn+(sum-maxn)/(n-1));&#125;signed main()&#123;    int T;    read(T);    while(T--)&#123;        work();    &#125;    return 0;&#125;</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Codeforces </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>分块入门</title>
       <link href="/alex-xjy.github.io/2021/08/08/fen-kuai-ru-men/"/>
       <url>/alex-xjy.github.io/2021/08/08/fen-kuai-ru-men/</url>
