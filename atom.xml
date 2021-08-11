@@ -29,8 +29,7 @@
         
         
     <summary type="html">&lt;p&gt;&lt;a href=&quot;https://codeforces.com/problemset/problem/1530/B&quot;&gt;题目链接&lt;/a&gt;&lt;/p&gt;
-&lt;h4 id=&quot;题目大意&quot;&gt;题目大意：&lt;/h4&gt;
-&lt;p&gt;求一个h*w的01矩阵，并且使矩阵中的每两个值为&lt;span</summary>
+&lt;h4 id=&quot;题目大意：&quot;&gt;&lt;a href=&quot;#题目大意：&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -56,7 +55,7 @@
         
         
     <summary type="html">&lt;p&gt;&lt;a href=&quot;https://codeforces.com/problemset/problem/1108/C&quot;&gt;题目链接&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;本题要我们修改最少的字符使 &lt;span class=&quot;math inline&quot;&gt;\(s_i=s_j\)&lt;/span&gt; 且</summary>
+&lt;p&gt;本题要我们修改最少的字符使 $s_i=s_j$ 且 $i\equiv j$  (&lt;em&gt;mod&lt;/em&gt;</summary>
         
       
     
@@ -106,9 +105,7 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;分块入门&quot;&gt;分块入门&lt;/h1&gt;
-&lt;h2 id=&quot;引言&quot;&gt;&lt;strong&gt;引言&lt;/strong&gt;&lt;/h2&gt;
-&lt;h3 id=&quot;何为分块&quot;&gt;&lt;strong&gt;&lt;span class=&quot;math</summary>
+    <summary type="html">&lt;h1 id=&quot;分块入门&quot;&gt;&lt;a href=&quot;#分块入门&quot; class=&quot;headerlink&quot; title=&quot;分块入门&quot;&gt;&lt;/a&gt;分块入门&lt;/h1&gt;&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot;</summary>
         
       
     

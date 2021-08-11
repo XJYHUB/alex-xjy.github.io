@@ -471,14 +471,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    643
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    2 分
                 </div>
                 
 
@@ -498,174 +498,164 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="分块入门">分块入门</h1>
-<h2 id="引言"><strong>引言</strong></h2>
-<h3 id="何为分块"><strong><span class="math inline">\(1.\)</span>何为分块？</strong></h3>
-<p>所谓分块，顾名思义，就是将一个序列分成若干个块，在进行区间操作时，只需要对这个区间内所在块进行操作。因而，分块可以说就是一种支持区间操作与询问的数据结构。</p>
-<h3 id="为什么要分块"><strong><span class="math inline">\(2.\)</span>为什么要分块？</strong></h3>
-<p>说到区间操作，不难想到另外两个数据结构——树状数组与线段树。事实上，在很多问题中，这三个数据结构是可以通用的。区间求和就是一个经典例子。在这个问题中，树状数组与线段树的效率比分快都要高，为什么还有很多选择分块做法呢？原因是分块是最通用，最直观的。这样说也许十分抽象，接下来本文将以区间求和这一经典例题来引入分块思想。</p>
-<h2 id="声明"><strong>声明：</strong></h2>
-<p>不同OJ题目描述略有不同，但大多只是变量名的不同，无实质性区别。因此，请勿将同一份代码交到不同OJ。</p>
-<h2 id="例一区间求和"><strong>【例一】区间求和</strong></h2>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">题目链接</a><br />
-题目描述：给定一个长度为<span class="math inline">\(n\)</span> <span class="math inline">\((n\le 10^5)\)</span>的序列A,然后给定<span class="math inline">\(q\)</span> <span class="math inline">\((q\le 10^5)\)</span>个操作命令,操作命令如下:<br />
-命令一:形如“<span class="math inline">\(1\)</span> <span class="math inline">\(x\)</span> <span class="math inline">\(y\)</span> <span class="math inline">\(k\)</span>”，表示对于所有的正整数<span class="math inline">\(i(x\le i\le y)\)</span>，将<span class="math inline">\(A_i\)</span>加上一个<span class="math inline">\(k\)</span>。<br />
-命令二:形如"<span class="math inline">\(2\)</span> <span class="math inline">\(x\)</span> <span class="math inline">\(y\)</span>",表示求 <span class="math display">\[\sum_{i=x}^y{A_i}\]</span> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">对于不习惯用数学符号描述最简题面的读者可以点开原题题面</a></p>
-<h2 id="solution"><strong><span class="math inline">\(Solution:\)</span></strong></h2>
-<p>首先对数据规模进行分析，暴力肯定会超时。这可以用树状数组和线段树，但在这，我们用分块来做。<br />
-分块，首先就要确定“块”的长度，方便起见,我们记<span class="math inline">\(m\)</span>为块的长度。通常情况下，我们以<span class="math inline">\(\lfloor \sqrt{n}\rfloor\)</span>作为块的长度，即<span class="math inline">\(m=\lfloor \sqrt{n}\rfloor\)</span>。当然，大多数情况下，<span class="math inline">\(n\)</span>未必是一个完全平方数，也就是说，结尾部分会有不足。这时，我们只要单独处理就可以了。因此，我们可以将序列分成如下所示(方便起见，此处<span class="math inline">\(m\)</span>取<span class="math inline">\(2\)</span>)：</p>
-<p><img src="https://s3.bmp.ovh/imgs/2021/08/02fa725b2cf21669.png" /></p>
-<p>首先，我们要确定每个块的位置。因此，我们定义<span class="math inline">\(l\)</span>数组与<span class="math inline">\(r\)</span>数组，作为每个块的左端点与右端点。不难得出，<span class="math inline">\(l_i=(i-1)×m+1,r_i=i×m\)</span>。如果有多余的部分，则令<span class="math inline">\(l_i=(i-1)×m+1,r_i=n\)</span>。<br />
-<span class="math inline">\(Code:\)</span></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="dt">int</span> num=n/m;<span class="co">//求出总块数</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=num;++i)&#123;</a>
-<a class="sourceLine" id="cb1-3" title="3">    l[i]=(i-<span class="dv">1</span>)*m+<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-4" title="4">    r[i]=i*m;</a>
-<a class="sourceLine" id="cb1-5" title="5">&#125;</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="cf">if</span>(m*num&lt;n)&#123;<span class="co">//处理多余部分</span></a>
-<a class="sourceLine" id="cb1-7" title="7">    ++num;</a>
-<a class="sourceLine" id="cb1-8" title="8">    l[i]=(num-<span class="dv">1</span>)*m+<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-9" title="9">    r[i]=n;</a>
-<a class="sourceLine" id="cb1-10" title="10">&#125;</a></code></pre></div>
-<p>确定完每个块的边界后，我们还要判断<span class="math inline">\(A_i\)</span>的所属块。经过刚才对每个块左右端点的确定，这个操作变得十分容易。我们只需要用“块”将整个数列遍历一遍即可。具体实现方式如下:<br />
-<span class="math inline">\(Code:\)</span></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=num;++i)&#123;</a>
-<a class="sourceLine" id="cb2-2" title="2">    <span class="cf">for</span>(<span class="dt">int</span> j=l[i];j&lt;=r[i];++j)&#123;</a>
-<a class="sourceLine" id="cb2-3" title="3">        p[j]=i;</a>
-<a class="sourceLine" id="cb2-4" title="4">    &#125;</a>
-<a class="sourceLine" id="cb2-5" title="5">&#125;</a></code></pre></div>
-<p>到此为止，分块还并未发挥它的真正作用。而接下来的，便是分块思想中最重要的一环。<br />
-现在，我们要定义两个数组<span class="math inline">\(sum\)</span>与<span class="math inline">\(d\)</span>,分别表示每个块中数的和与每个块中的增量。首先要预处理出<span class="math inline">\(sum\)</span>，这只需在刚刚的<span class="math inline">\(for\)</span>循环中加一句<code>sum[i]+=a[j]</code>即可。在执行命令一时。对于一个完整的块，需要让<span class="math inline">\(sum_i\)</span>加上<span class="math inline">\(m*k\)</span>,并让<span class="math inline">\(d_i\)</span>加上<span class="math inline">\(k\)</span>。对于不完整的部分，则只要将<span class="math inline">\(sum_i\)</span>加上<span class="math inline">\(k\)</span>与该部分长度之积,并将原数列中对应的数加上<span class="math inline">\(k\)</span>。执行命令二时，同样的，分两种情况处理。我们记该区间和为<span class="math inline">\(ans\)</span>,对于不完整的部分，则暴力枚举。则让<span class="math inline">\(ans\)</span>加上<span class="math inline">\(A_i+d_{p_{A_i}}\)</span>,而对于一整个块，只需让<span class="math inline">\(ans\)</span>加上<span class="math inline">\(sum_i\)</span>即可。本来处理一个块的时间复杂度为<span class="math inline">\(O(m)\)</span>，如此一来，便降到了<span class="math inline">\(O(1)\)</span>。对于整个题目，暴力的时间复杂度为<span class="math inline">\(O(n^2)\)</span>,而分块则像是一种“优雅的暴力”，将遍历每个数变为遍历每个块，也就是将n降低为<span class="math inline">\(\sqrt{n}\)</span>,这就是分块的一个重要思想。该题分块时间复杂度理论上为<span class="math inline">\(O(n)\)</span>。真实复杂度还应加上预处理与对不完整部分的处理。即便如此，<span class="math inline">\(n=10^5\)</span>依然是能够支持的。</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372"><span class="math inline">\(Code:\)</span></a></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="pp">#define AK </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="pp">#define int </span><span class="dt">long</span><span class="pp"> </span><span class="dt">long</span></a>
-<a class="sourceLine" id="cb3-4" title="4"></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="kw">namespace</span> FastIOstream&#123;</a>
-<a class="sourceLine" id="cb3-6" title="6">    <span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt; <span class="kw">inline</span> <span class="dt">void</span> read(T &amp;x)&#123;<span class="co">//Fast read</span></a>
-<a class="sourceLine" id="cb3-7" title="7">    x=<span class="dv">0</span>;<span class="dt">int</span> f=<span class="dv">1</span>;<span class="dt">char</span> c=getchar();<span class="cf">for</span>(;!isdigit(c);)&#123;</a>
-<a class="sourceLine" id="cb3-8" title="8">            <span class="cf">if</span>(c==<span class="ch">&#39;-&#39;</span>)</a>
-<a class="sourceLine" id="cb3-9" title="9">                f=-<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb3-10" title="10">            c=getchar();</a>
-<a class="sourceLine" id="cb3-11" title="11">        &#125;</a>
-<a class="sourceLine" id="cb3-12" title="12">        <span class="cf">for</span>(;isdigit(c);)&#123;</a>
-<a class="sourceLine" id="cb3-13" title="13">            x=(x&lt;&lt;<span class="dv">1</span>)+(x&lt;&lt;<span class="dv">3</span>)+c-<span class="dv">48</span>;</a>
-<a class="sourceLine" id="cb3-14" title="14">            c=getchar();</a>
-<a class="sourceLine" id="cb3-15" title="15">        &#125;</a>
-<a class="sourceLine" id="cb3-16" title="16">        x*=f;</a>
-<a class="sourceLine" id="cb3-17" title="17">        <span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb3-18" title="18">    &#125;</a>
-<a class="sourceLine" id="cb3-19" title="19">    <span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt; </a>
-<a class="sourceLine" id="cb3-20" title="20">    <span class="dt">void</span> print(T x)&#123;<span class="co">//Fast print</span></a>
-<a class="sourceLine" id="cb3-21" title="21">        <span class="cf">if</span>(x&lt;<span class="dv">0</span>)&#123;</a>
-<a class="sourceLine" id="cb3-22" title="22">            x=-x;</a>
-<a class="sourceLine" id="cb3-23" title="23">            putchar(<span class="ch">&#39;-&#39;</span>);</a>
-<a class="sourceLine" id="cb3-24" title="24">        &#125;</a>
-<a class="sourceLine" id="cb3-25" title="25">        <span class="cf">if</span>(x&gt;<span class="dv">9</span>)&#123;</a>
-<a class="sourceLine" id="cb3-26" title="26">            print((x&gt;&gt;<span class="dv">1</span>)/<span class="dv">5</span>);</a>
-<a class="sourceLine" id="cb3-27" title="27">        &#125;</a>
-<a class="sourceLine" id="cb3-28" title="28">        putchar(x%<span class="dv">10</span>+<span class="dv">48</span>);</a>
-<a class="sourceLine" id="cb3-29" title="29">        <span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb3-30" title="30">    &#125;</a>
-<a class="sourceLine" id="cb3-31" title="31">&#125;</a>
-<a class="sourceLine" id="cb3-32" title="32"></a>
-<a class="sourceLine" id="cb3-33" title="33"><span class="kw">using</span> <span class="kw">namespace</span> std;</a>
-<a class="sourceLine" id="cb3-34" title="34"><span class="kw">using</span> <span class="kw">namespace</span> FastIOstream;</a>
-<a class="sourceLine" id="cb3-35" title="35"></a>
-<a class="sourceLine" id="cb3-36" title="36"><span class="dt">int</span> n,t,num,k,f[<span class="dv">100005</span>],l[<span class="dv">1005</span>],r[<span class="dv">1005</span>],p[<span class="dv">100005</span>],d[<span class="dv">1005</span>],sum[<span class="dv">1005</span>];</a>
-<a class="sourceLine" id="cb3-37" title="37"></a>
-<a class="sourceLine" id="cb3-38" title="38"><span class="dt">void</span> init()&#123;</a>
-<a class="sourceLine" id="cb3-39" title="39">    read(n);</a>
-<a class="sourceLine" id="cb3-40" title="40">    read(t);</a>
-<a class="sourceLine" id="cb3-41" title="41">    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=n;++i)&#123;</a>
-<a class="sourceLine" id="cb3-42" title="42">        read(f[i]);</a>
-<a class="sourceLine" id="cb3-43" title="43">    &#125;</a>
-<a class="sourceLine" id="cb3-44" title="44">    k=sqrt(n);</a>
-<a class="sourceLine" id="cb3-45" title="45">    num=n/k;</a>
-<a class="sourceLine" id="cb3-46" title="46">    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=num;++i)&#123;</a>
-<a class="sourceLine" id="cb3-47" title="47">        l[i]=(i-<span class="dv">1</span>)*k+<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb3-48" title="48">        r[i]=i*k;</a>
-<a class="sourceLine" id="cb3-49" title="49">    &#125;</a>
-<a class="sourceLine" id="cb3-50" title="50">    <span class="cf">if</span>(k*num&lt;n)&#123;</a>
-<a class="sourceLine" id="cb3-51" title="51">        num++;</a>
-<a class="sourceLine" id="cb3-52" title="52">        l[num]=(num-<span class="dv">1</span>)*k+<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb3-53" title="53">        r[num]=n;</a>
-<a class="sourceLine" id="cb3-54" title="54">    &#125;</a>
-<a class="sourceLine" id="cb3-55" title="55">    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=num;++i)&#123;</a>
-<a class="sourceLine" id="cb3-56" title="56">        <span class="cf">for</span>(<span class="dt">int</span> j=l[i];j&lt;=r[i];++j)&#123;</a>
-<a class="sourceLine" id="cb3-57" title="57">            p[j]=i;</a>
-<a class="sourceLine" id="cb3-58" title="58">            sum[i]+=f[j];</a>
-<a class="sourceLine" id="cb3-59" title="59">        &#125;</a>
-<a class="sourceLine" id="cb3-60" title="60">    &#125;</a>
-<a class="sourceLine" id="cb3-61" title="61">    <span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb3-62" title="62">&#125;</a>
-<a class="sourceLine" id="cb3-63" title="63"></a>
-<a class="sourceLine" id="cb3-64" title="64"><span class="dt">void</span> change(<span class="dt">int</span> x,<span class="dt">int</span> y,<span class="dt">int</span> w)&#123;</a>
-<a class="sourceLine" id="cb3-65" title="65">    <span class="cf">if</span>(p[x]==p[y])&#123;</a>
-<a class="sourceLine" id="cb3-66" title="66">        <span class="cf">for</span>(<span class="dt">int</span> i=x;i&lt;=y;++i)&#123;</a>
-<a class="sourceLine" id="cb3-67" title="67">            f[i]+=w;</a>
-<a class="sourceLine" id="cb3-68" title="68">            sum[p[x]]+=w;</a>
-<a class="sourceLine" id="cb3-69" title="69">        &#125;</a>
-<a class="sourceLine" id="cb3-70" title="70">    &#125;</a>
-<a class="sourceLine" id="cb3-71" title="71">    <span class="cf">else</span>&#123;</a>
-<a class="sourceLine" id="cb3-72" title="72">        <span class="dt">int</span> ql=p[x]+<span class="dv">1</span>,qr=p[y]-<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb3-73" title="73">        <span class="cf">for</span>(<span class="dt">int</span> i=ql;i&lt;=qr;++i)&#123;</a>
-<a class="sourceLine" id="cb3-74" title="74">            sum[i]+=w*k;</a>
-<a class="sourceLine" id="cb3-75" title="75">            d[i]+=w;</a>
-<a class="sourceLine" id="cb3-76" title="76">        &#125;</a>
-<a class="sourceLine" id="cb3-77" title="77">        <span class="cf">for</span>(<span class="dt">int</span> i=x;i&lt;=r[p[x]];++i)&#123;</a>
-<a class="sourceLine" id="cb3-78" title="78">            sum[p[x]]+=w;</a>
-<a class="sourceLine" id="cb3-79" title="79">            f[i]+=w;</a>
-<a class="sourceLine" id="cb3-80" title="80">        &#125;</a>
-<a class="sourceLine" id="cb3-81" title="81">        <span class="cf">for</span>(<span class="dt">int</span> j=l[p[y]];j&lt;=y;++j)&#123;</a>
-<a class="sourceLine" id="cb3-82" title="82">            sum[p[y]]+=w;</a>
-<a class="sourceLine" id="cb3-83" title="83">            f[j]+=w;</a>
-<a class="sourceLine" id="cb3-84" title="84">        &#125;</a>
-<a class="sourceLine" id="cb3-85" title="85">    &#125;</a>
-<a class="sourceLine" id="cb3-86" title="86">    <span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb3-87" title="87">&#125;</a>
-<a class="sourceLine" id="cb3-88" title="88"></a>
-<a class="sourceLine" id="cb3-89" title="89"><span class="dt">int</span> ask(<span class="dt">int</span> x,<span class="dt">int</span> y)&#123;</a>
-<a class="sourceLine" id="cb3-90" title="90">    <span class="dt">int</span> ans=<span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb3-91" title="91">    <span class="cf">if</span>(p[x]==p[y])&#123;</a>
-<a class="sourceLine" id="cb3-92" title="92">        <span class="cf">for</span>(<span class="dt">int</span> i=x;i&lt;=y;++i)&#123;</a>
-<a class="sourceLine" id="cb3-93" title="93">            ans+=f[i]+d[p[x]];</a>
-<a class="sourceLine" id="cb3-94" title="94">        &#125;</a>
-<a class="sourceLine" id="cb3-95" title="95">    &#125;</a>
-<a class="sourceLine" id="cb3-96" title="96">    <span class="cf">else</span>&#123;</a>
-<a class="sourceLine" id="cb3-97" title="97">        <span class="dt">int</span> ql=p[x]+<span class="dv">1</span>,qr=p[y]-<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb3-98" title="98">        <span class="cf">for</span>(<span class="dt">int</span> i=ql;i&lt;=qr;++i)&#123;</a>
-<a class="sourceLine" id="cb3-99" title="99">            ans+=sum[i];</a>
-<a class="sourceLine" id="cb3-100" title="100">        &#125;</a>
-<a class="sourceLine" id="cb3-101" title="101">        <span class="cf">for</span>(<span class="dt">int</span> i=x;i&lt;=r[p[x]];++i)&#123;</a>
-<a class="sourceLine" id="cb3-102" title="102">            ans+=f[i]+d[p[x]];</a>
-<a class="sourceLine" id="cb3-103" title="103">        &#125;</a>
-<a class="sourceLine" id="cb3-104" title="104">        <span class="cf">for</span>(<span class="dt">int</span> j=l[p[y]];j&lt;=y;++j)&#123;</a>
-<a class="sourceLine" id="cb3-105" title="105">             ans+=f[j]+d[p[y]];</a>
-<a class="sourceLine" id="cb3-106" title="106">        &#125;</a>
-<a class="sourceLine" id="cb3-107" title="107">    &#125;</a>
-<a class="sourceLine" id="cb3-108" title="108">    <span class="cf">return</span> ans;</a>
-<a class="sourceLine" id="cb3-109" title="109">&#125;</a>
-<a class="sourceLine" id="cb3-110" title="110"></a>
-<a class="sourceLine" id="cb3-111" title="111"><span class="dt">signed</span> main()&#123;</a>
-<a class="sourceLine" id="cb3-112" title="112">    init();</a>
-<a class="sourceLine" id="cb3-113" title="113">    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=t;++i)&#123;</a>
-<a class="sourceLine" id="cb3-114" title="114">        <span class="dt">int</span> op,x,y,w;</a>
-<a class="sourceLine" id="cb3-115" title="115">        read(op);</a>
-<a class="sourceLine" id="cb3-116" title="116">        read(x);</a>
-<a class="sourceLine" id="cb3-117" title="117">        read(y);</a>
-<a class="sourceLine" id="cb3-118" title="118">        <span class="cf">if</span>(op==<span class="dv">1</span>)&#123;</a>
-<a class="sourceLine" id="cb3-119" title="119">            read(w);</a>
-<a class="sourceLine" id="cb3-120" title="120">            change(x,y,w);</a>
-<a class="sourceLine" id="cb3-121" title="121">        &#125;</a>
-<a class="sourceLine" id="cb3-122" title="122">        <span class="cf">else</span>&#123;</a>
-<a class="sourceLine" id="cb3-123" title="123">            print(ask(x,y));</a>
-<a class="sourceLine" id="cb3-124" title="124">            puts(<span class="st">&quot; &quot;</span>);</a>
-<a class="sourceLine" id="cb3-125" title="125">        &#125;</a>
-<a class="sourceLine" id="cb3-126" title="126">    &#125;</a>
-<a class="sourceLine" id="cb3-127" title="127">    <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb3-128" title="128">&#125;</a></code></pre></div>
-<p><span class="math inline">\(Markdown\)</span> <span class="math inline">\(with\)</span> <span class="math inline">\(\LaTeX\)</span> TAG</p>
+                <h1 id="分块入门"><a href="#分块入门" class="headerlink" title="分块入门"></a>分块入门</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a><strong>引言</strong></h2><h3 id="1-何为分块？"><a href="#1-何为分块？" class="headerlink" title="$1.$何为分块？"></a><strong>$1.$何为分块？</strong></h3><p>所谓分块，顾名思义，就是将一个序列分成若干个块，在进行区间操作时，只需要对这个区间内所在块进行操作。因而，分块可以说就是一种支持区间操作与询问的数据结构。</p>
+<h3 id="2-为什么要分块？"><a href="#2-为什么要分块？" class="headerlink" title="$2.$为什么要分块？"></a><strong>$2.$为什么要分块？</strong></h3><p>说到区间操作，不难想到另外两个数据结构——树状数组与线段树。事实上，在很多问题中，这三个数据结构是可以通用的。区间求和就是一个经典例子。在这个问题中，树状数组与线段树的效率比分快都要高，为什么还有很多选择分块做法呢？原因是分块是最通用，最直观的。这样说也许十分抽象，接下来本文将以区间求和这一经典例题来引入分块思想。</p>
+<h2 id="声明："><a href="#声明：" class="headerlink" title="声明："></a><strong>声明：</strong></h2><p>不同OJ题目描述略有不同，但大多只是变量名的不同，无实质性区别。因此，请勿将同一份代码交到不同OJ。</p>
+<h2 id="【例一】区间求和"><a href="#【例一】区间求和" class="headerlink" title="【例一】区间求和"></a><strong>【例一】区间求和</strong></h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">题目链接</a>\<br>题目描述：给定一个长度为$n$ $(n\le 10^5)$的序列A,然后给定$q$ $(q\le 10^5)$个操作命令,操作命令如下:\<br>命令一:形如“$1$ $x$ $y$ $k$”，表示对于所有的正整数$i(x\le i\le y)$，将$A_i$加上一个$k$。\<br>命令二:形如”$2$ $x$ $y$”,表示求</p>
+<script type="math/tex; mode=display">\sum_{i=x}^y{A_i}</script><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">对于不习惯用数学符号描述最简题面的读者可以点开原题题面</a></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="$Solution:$"></a><strong>$Solution:$</strong></h2><p>首先对数据规模进行分析，暴力肯定会超时。这可以用树状数组和线段树，但在这，我们用分块来做。\<br>分块，首先就要确定“块”的长度，方便起见,我们记$m$为块的长度。通常情况下，我们以$\lfloor \sqrt{n}\rfloor$作为块的长度，即$m=\lfloor \sqrt{n}\rfloor$。当然，大多数情况下，$n$未必是一个完全平方数，也就是说，结尾部分会有不足。这时，我们只要单独处理就可以了。因此，我们可以将序列分成如下所示(方便起见，此处$m$取$2$)：</p>
+<p><img src="https://s3.bmp.ovh/imgs/2021/08/02fa725b2cf21669.png" alt=""></p>
+<p>首先，我们要确定每个块的位置。因此，我们定义$l$数组与$r$数组，作为每个块的左端点与右端点。不难得出，$l_i=(i-1)×m+1,r_i=i×m$。如果有多余的部分，则令$l_i=(i-1)×m+1,r_i=n$。\<br>$Code:$</p>
+<pre class=" language-lang-cpp"><code class="language-lang-cpp">int num=n/m;//求出总块数
+for(int i=1;i<=num;++i)&#123;
+    l[i]=(i-1)*m+1;
+    r[i]=i*m;
+&#125;
+if(m*num<n)&#123;//处理多余部分
+    ++num;
+    l[i]=(num-1)*m+1;
+    r[i]=n;
+&#125;
+</code></pre>
+<p>确定完每个块的边界后，我们还要判断$A_i$的所属块。经过刚才对每个块左右端点的确定，这个操作变得十分容易。我们只需要用“块”将整个数列遍历一遍即可。具体实现方式如下:\<br>$Code:$</p>
+<pre class=" language-lang-cpp"><code class="language-lang-cpp">for(int i=1;i<=num;++i)&#123;
+    for(int j=l[i];j<=r[i];++j)&#123;
+        p[j]=i;
+    &#125;
+&#125;
+</code></pre>
+<p>到此为止，分块还并未发挥它的真正作用。而接下来的，便是分块思想中最重要的一环。\<br>现在，我们要定义两个数组$sum$与$d$,分别表示每个块中数的和与每个块中的增量。首先要预处理出$sum$，这只需在刚刚的$for$循环中加一句<code>sum[i]+=a[j]</code>即可。在执行命令一时。对于一个完整的块，需要让$sum_i$加上$m*k$,并让$d_i$加上$k$。对于不完整的部分，则只要将$sum_i$加上$k$与该部分长度之积,并将原数列中对应的数加上$k$。执行命令二时，同样的，分两种情况处理。我们记该区间和为$ans$,对于不完整的部分，则暴力枚举。则让$ans$加上$A_i+d_{p_{A_i}}$,而对于一整个块，只需让$ans$加上$sum_i$即可。本来处理一个块的时间复杂度为$O(m)$，如此一来，便降到了$O(1)$。对于整个题目，暴力的时间复杂度为$O(n^2)$,而分块则像是一种“优雅的暴力”，将遍历每个数变为遍历每个块，也就是将n降低为$\sqrt{n}$,这就是分块的一个重要思想。该题分块时间复杂度理论上为$O(n)$。真实复杂度还应加上预处理与对不完整部分的处理。即便如此，$n=10^5$依然是能够支持的。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">$Code:$</a></p>
+<pre class=" language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+#define AK 1
+#define int long long
+
+namespace FastIOstream&#123;
+    template <typename T> inline void read(T &x)&#123;//Fast read
+    x=0;int f=1;char c=getchar();for(;!isdigit(c);)&#123;
+            if(c=='-')
+                f=-1;
+            c=getchar();
+        &#125;
+        for(;isdigit(c);)&#123;
+            x=(x<<1)+(x<<3)+c-48;
+            c=getchar();
+        &#125;
+        x*=f;
+        return;
+    &#125;
+    template <typename T> 
+    void print(T x)&#123;//Fast print
+        if(x<0)&#123;
+            x=-x;
+            putchar('-');
+        &#125;
+        if(x>9)&#123;
+            print((x>>1)/5);
+        &#125;
+        putchar(x%10+48);
+        return;
+    &#125;
+&#125;
+
+using namespace std;
+using namespace FastIOstream;
+
+int n,t,num,k,f[100005],l[1005],r[1005],p[100005],d[1005],sum[1005];
+
+void init()&#123;
+    read(n);
+    read(t);
+    for(int i=1;i<=n;++i)&#123;
+        read(f[i]);
+    &#125;
+    k=sqrt(n);
+    num=n/k;
+    for(int i=1;i<=num;++i)&#123;
+        l[i]=(i-1)*k+1;
+        r[i]=i*k;
+    &#125;
+    if(k*num<n)&#123;
+        num++;
+        l[num]=(num-1)*k+1;
+        r[num]=n;
+    &#125;
+    for(int i=1;i<=num;++i)&#123;
+        for(int j=l[i];j<=r[i];++j)&#123;
+            p[j]=i;
+            sum[i]+=f[j];
+        &#125;
+    &#125;
+    return;
+&#125;
+
+void change(int x,int y,int w)&#123;
+    if(p[x]==p[y])&#123;
+        for(int i=x;i<=y;++i)&#123;
+            f[i]+=w;
+            sum[p[x]]+=w;
+        &#125;
+    &#125;
+    else&#123;
+        int ql=p[x]+1,qr=p[y]-1;
+        for(int i=ql;i<=qr;++i)&#123;
+            sum[i]+=w*k;
+            d[i]+=w;
+        &#125;
+        for(int i=x;i<=r[p[x]];++i)&#123;
+            sum[p[x]]+=w;
+            f[i]+=w;
+        &#125;
+        for(int j=l[p[y]];j<=y;++j)&#123;
+            sum[p[y]]+=w;
+            f[j]+=w;
+        &#125;
+    &#125;
+    return;
+&#125;
+
+int ask(int x,int y)&#123;
+    int ans=0;
+    if(p[x]==p[y])&#123;
+        for(int i=x;i<=y;++i)&#123;
+            ans+=f[i]+d[p[x]];
+        &#125;
+    &#125;
+    else&#123;
+        int ql=p[x]+1,qr=p[y]-1;
+        for(int i=ql;i<=qr;++i)&#123;
+            ans+=sum[i];
+        &#125;
+        for(int i=x;i<=r[p[x]];++i)&#123;
+            ans+=f[i]+d[p[x]];
+        &#125;
+        for(int j=l[p[y]];j<=y;++j)&#123;
+             ans+=f[j]+d[p[y]];
+        &#125;
+    &#125;
+    return ans;
+&#125;
+
+signed main()&#123;
+    init();
+    for(int i=1;i<=t;++i)&#123;
+        int op,x,y,w;
+        read(op);
+        read(x);
+        read(y);
+        if(op==1)&#123;
+            read(w);
+            change(x,y,w);
+        &#125;
+        else&#123;
+            print(ask(x,y));
+            puts(" ");
+        &#125;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<p>$Markdown$<br>$with$<br>$\LaTeX$<br>TAG</p>
 
                 
             </div>
@@ -1401,7 +1391,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2.8k</span>&nbsp;字
+                class="white-color">1.3k</span>&nbsp;字
             
             
             
@@ -1639,8 +1629,8 @@ $(function () {
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script src="/alex-xjy.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/alex-xjy.github.io/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/alex-xjy.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/alex-xjy.github.io/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 
 </html>
