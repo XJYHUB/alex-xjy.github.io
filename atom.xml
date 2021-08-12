@@ -6,7 +6,7 @@
   <link href="https://xjyhub.github.io/alex-xjy.github.io/atom.xml" rel="self"/>
   
   <link href="https://xjyhub.github.io/alex-xjy.github.io/"/>
-  <updated>2021-08-12T08:24:41.647Z</updated>
+  <updated>2021-08-12T09:12:17.736Z</updated>
   <id>https://xjyhub.github.io/alex-xjy.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CF392E</title>
+    <link href="https://xjyhub.github.io/alex-xjy.github.io/2021/08/12/cf392e/"/>
+    <id>https://xjyhub.github.io/alex-xjy.github.io/2021/08/12/cf392e/</id>
+    <published>2021-08-12T09:06:21.000Z</published>
+    <updated>2021-08-12T09:12:17.736Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;span class=&quot;math inline&quot;&gt;\(f\)&lt;/span&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Codeforces" scheme="https://xjyhub.github.io/alex-xjy.github.io/categories/Codeforces/"/>
+    
+    
+    <category term="Codeforces DP" scheme="https://xjyhub.github.io/alex-xjy.github.io/tags/Codeforces-DP/"/>
+    
+  </entry>
   
   <entry>
     <title>Euler函数初步</title>
