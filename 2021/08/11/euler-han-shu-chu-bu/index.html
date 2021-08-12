@@ -471,14 +471,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    973
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    6 分
                 </div>
                 
 
@@ -547,7 +547,32 @@
 <h4 id="证明-1">证明：</h4>
 <p>首先，我们先算出不与 <span class="math inline">\(n\)</span> 互质的数的平均值。由<strong>更相减损术</strong>(不知道的请自行查资料，这个十分简单)得， <span class="math inline">\(gcd(n,a)=gcd(n,n-a)\)</span> 。由此得出，与 <span class="math inline">\(n\)</span> 不互质的数都是<strong>成双出现</strong>的。因此，不与 <span class="math inline">\(n\)</span> 互质的数的平均值为 <span class="math inline">\(\frac{n}{2}\)</span> 。则与 <span class="math inline">\(n\)</span> 互质的数得平均数为 <span class="math inline">\((1-\frac{n}{2})=\frac{n}{2}\)</span> 。所以与 <span class="math inline">\(n\)</span> 互质的数的和为 <span class="math inline">\(\varphi(n)\times \frac{n}{2}=\frac{n\times \varphi(n)}{2}。\)</span></p>
 <h3 id="积性函数">积性函数</h3>
-<p>如果对于一个函数 <span class="math inline">\(f\)</span> ,当 <span class="math inline">\(gcd(a,b)=1\)</span> 时， <span class="math inline">\(f(a)\times f(b)=f(ab)\)</span> ，那么我们成 <span class="math inline">\(f\)</span> 为积性函数。</p>
+<p>在讲性质 <span class="math inline">\(2\)</span> 之前，先引入一个概念：如果对于一个函数 <span class="math inline">\(f\)</span> ,当 <span class="math inline">\(gcd(a,b)=1\)</span> 时， <span class="math inline">\(f(a)\times f(b)=f(ab)\)</span> ，那么我们称 <span class="math inline">\(f\)</span> 为积性函数。对于互质的两个数 <span class="math inline">\(a\)</span> , <span class="math inline">\(b\)</span> 而言，两者是没有共同质因子的。因此 <span class="math inline">\(\varphi(a)\)</span> 与 <span class="math inline">\(\varphi(b)\)</span> 是两个互相独立的数。由此可得出 <span class="math inline">\(\varphi(ab)=\varphi(a)\times \varphi(b)\)</span> 。于是，就得到了性质 <span class="math inline">\(2\)</span> :</p>
+<h3 id="性质2">性质2</h3>
+<p>如若 <span class="math inline">\(a\)</span> , <span class="math inline">\(b\)</span> 互质，那么 <span class="math inline">\(\varphi(ab)=\varphi(a)\times \varphi(b)\)</span> 。</p>
+<p>接下来的两个性质十分重要，可以让我们在线性时间内求出 <span class="math inline">\(1\)</span> ~ <span class="math inline">\(n\)</span> 的欧拉函数，其证明请务必想清楚。</p>
+<h3 id="性质34">性质3，4</h3>
+<p>1:若 <span class="math inline">\(p\)</span> 为质数，且满足 <span class="math inline">\(p\mid n\)</span> 与 <span class="math inline">\(p^2\mid n\)</span> ，那么 <span class="math inline">\(\varphi(n)=\varphi(\frac{n}{p})\times p\)</span> 。</p>
+<p>2:若 <span class="math inline">\(p\)</span> 为质数，满足 <span class="math inline">\(p\mid n\)</span> 但不满足 <span class="math inline">\(p^2\mid n\)</span> ，那么 <span class="math inline">\(\varphi(n)=\varphi(\frac{n}{p})\times (p-1)\)</span> 。</p>
+<h4 id="证明-2">证明：</h4>
+<p><span class="math inline">\(\because p^2\mid n \\\therefore p\mid \frac{n}{p} \\\because p\mid n \\\therefore n\)</span> 与 <span class="math inline">\(\frac{n}{p}\)</span> 有相同质因子 <span class="math inline">\(p\)</span> (指数不一定相同)。</p>
+<p>根据欧拉函数计算公式可得</p>
+<p><span class="math display">\[
+\varphi(n)=n\times \prod_{p\mid n}\left(1-\frac{1}{p}\right)\\\varphi\left(\frac{n}{p}\right)=\frac{n}{p}\times \prod_{p\mid n}\left(1-\frac{1}{p}\right)
+\]</span></p>
+<p>二者相除，得</p>
+<p><span class="math display">\[
+\cfrac{n\times \prod_{p\mid n}\left(1-\frac{1}{p}\right)}{\frac{n}{p}\times \prod_{p\mid n}\left(1-\frac{1}{p}\right)}
+\]</span></p>
+<p>最后算出来答案为 <span class="math inline">\(p\)</span> ,故性质 <span class="math inline">\(3\)</span> 成立。</p>
+<p><span class="math inline">\(\because p^2\nmid n\\\therefore p\nmid\frac{n}{p}\\\because p\mid n\\\therefore n\)</span> 与 <span class="math inline">\(\frac{n}{p}\)</span> 互质 <span class="math inline">\(\\\because \varphi\)</span> 为积性函数 <span class="math inline">\(\\\therefore \varphi(\frac{n}{p})\times \varphi(p)=\varphi(n)\\\because p\)</span> 为质数 <span class="math inline">\(\\\therefore \varphi(p)=p-1\\\therefore \varphi(n)=\varphi(\frac{n}{p})\times (p-1)\)</span></p>
+<h2 id="例题">例题</h2>
+<h3 id="send-a-tabletextuva10820"><a target="_blank" rel="noopener" href="https://onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=20&amp;page=show_problem&amp;problem=1761"><span class="math inline">\(Send\)</span> <span class="math inline">\(a\)</span> <span class="math inline">\(Table^{\text{UVA10820}}\)</span></a></h3>
+<h4 id="题目大意">题目大意：</h4>
+<p>有一道比赛题，输入两个整数 <span class="math inline">\(x,y(1&lt;=x,y&lt;=n)\)</span> ，输出某个函数 <span class="math inline">\(f(x,y)\)</span> 。有位选手想打表（即事先算出所有的 <span class="math inline">\(f(x,y)\)</span> ，写在源代码里），但是表太大了，源代码长度超过了比赛的限制，需要精简。</p>
+<p>好在题目有一个性质，使得很容易根据 <span class="math inline">\(f(x,y)\)</span> 算出 <span class="math inline">\(f(xk,yk)\)</span>（其中 <span class="math inline">\(k\)</span> 是任意正整数），这样有一些 <span class="math inline">\(f(x,y)\)</span> 就无须存在表里了。求最少要求多少个 <span class="math inline">\(f(x,y)\)</span> 。</p>
+<h4 id="solution"><span class="math inline">\(Solution:\)</span></h4>
+<p>这题明显可以看出 对于每一个 <span class="math inline">\(x\)</span> 或 <span class="math inline">\(y\)</span> ,求有多少属于其互质，即求 <span class="math inline">\(\sum_{i=2}^{n}{\varphi(i)}+1\)</span> 。 <span class="math inline">\(f(1,1)\)</span> 要单独处理，所以加 <span class="math inline">\(1\)</span> 。</p>
 <hr />
 <p>暂未完成</p>
 
@@ -1284,7 +1309,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.6k</span>&nbsp;字
+                class="white-color">8.2k</span>&nbsp;字
             
             
             
