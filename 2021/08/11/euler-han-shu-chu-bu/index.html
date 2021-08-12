@@ -471,14 +471,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    650
+                    972
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -500,6 +500,7 @@
             <div id="articleContent">
                 <h1 id="序言">序言</h1>
 <p>接触了数论之后，发现很多东西即使理解了，也很难去记住。很多东西看似理解了，在做题过程中很多东西也未深入理解。因此，写了这篇博客。由于是第一次这种数学博客，有不足之处，还指出。另外，由于本人水平有限，一些定理可能无法给出证明，为了保证文章的完整性，我会引用别处的证明，并标注来源，读者可自行选择查看。</p>
+<p>注：由于本博客因技术原因，代码块十分丑陋，因此，算法的代码我会放在</p>
 <h1 id="正文">正文</h1>
 <h2 id="定义">定义</h2>
 <blockquote>
@@ -529,6 +530,22 @@
 \varphi(n)=n-\frac{n}{p}-\frac{n}{q}+\frac{n}{pq}=n\times\left(1-\frac{1}{p}-\frac{1}{q}+\frac{1}{pq}\right)=n\times\left(1-\frac{1}{p}\right)\left(1-\frac{1}{q}\right)
 \]</span></p>
 <p>同样的我们对所有质因子进行这样的操作，就得到我们结果了。</p>
+<h3 id="代码实现">代码实现</h3>
+<p>根据以上，我们只需将 <span class="math inline">\(n\)</span> 分解质因数，把所有的质因子及其指数算出，即可算出 <span class="math inline">\(\varphi(n)\)</span> 算出。其过程其实就是小学奥数中<strong>短除法</strong>的模拟。</p>
+<p><a target="_blank" rel="noopener" href="https://paste.ubuntu.com/p/zx7wFFrybT/">实现代码</a></p>
+<h2 id="欧拉函数的性质">欧拉函数的性质</h2>
+<h3 id="性质1">性质1</h3>
+<p>对于任何一个大于 <span class="math inline">\(1\)</span> 的正整数 <span class="math inline">\(n\)</span></p>
+<p><span class="math display">\[
+\sum_{i=1}^{n}{\left([gcd(i,n)==1]\times i\right)}=\frac{n\times \varphi(n)}{2}
+\]</span></p>
+<blockquote>
+<p>注： <span class="math inline">\([\)</span> <span class="math inline">\(]\)</span> 为逻辑判断式，括号内式子若成立，该式子值为 <span class="math inline">\(1\)</span> ，否则为 <span class="math inline">\(0\)</span> 。</p>
+</blockquote>
+<h4 id="证明-1">证明：</h4>
+<p>首先，我们先算出不与 <span class="math inline">\(n\)</span> 互质的数的平均值。由<strong>更相减损术</strong>(不知道的请自行查资料，这个十分简单)得， <span class="math inline">\(gcd(n,a)=gcd(n,n-a)\)</span> 。由此得出，与 <span class="math inline">\(n\)</span> 不互质的数都是<strong>成双出现</strong>的。因此，不与 <span class="math inline">\(n\)</span> 互质的数的平均值为 <span class="math inline">\(\frac{n}{2}\)</span> 。则与 <span class="math inline">\(n\)</span> 互质的数得平均数为 <span class="math inline">\((1-\frac{n}{2})=\frac{n}{2}\)</span> 。所以与 <span class="math inline">\(n\)</span> 互质的数的和为 <span class="math inline">\(\varphi(n)\times \frac{n}{2}=\frac{n\times \varphi(n)}{2}。\)</span></p>
+<h3 id="积性函数">积性函数</h3>
+<p>如果对于一个函数 <span class="math inline">\(f\)</span> ,当 <span class="math inline">\(gcd(a,b)=1\)</span> 时， <span class="math inline">\(f(a)\times f(b)=f(ab)\)</span> ，那么我们成 <span class="math inline">\(f\)</span> 为积性函数。</p>
 <hr />
 <p>暂未完成</p>
 
@@ -1267,7 +1284,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.3k</span>&nbsp;字
+                class="white-color">7.6k</span>&nbsp;字
             
             
             
