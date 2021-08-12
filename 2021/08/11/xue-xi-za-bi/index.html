@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="CF1530B, Alex">
+    <meta name="keywords" content="学隙杂笔, Alex">
     <meta name="description" content="一个神奇的地方">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>CF1530B | Alex</title>
+    <title>学隙杂笔 | Alex</title>
     <link rel="icon" type="image/png" href="/alex-xjy.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/alex-xjy.github.io/libs/awesome/css/all.css">
@@ -311,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/alex-xjy.github.io/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/alex-xjy.github.io/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">CF1530B</h1>
+                    <h1 class="description center-align post-title">学隙杂笔</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/alex-xjy.github.io/tags/Codeforces/">
-                                <span class="chip bg-color">Codeforces</span>
+                            <a href="/alex-xjy.github.io/tags/%E6%96%87%E5%AD%A6/">
+                                <span class="chip bg-color">文学</span>
                             </a>
                         
                     </div>
@@ -444,8 +444,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/alex-xjy.github.io/categories/%E9%A2%98%E8%A7%A3/" class="post-category">
-                                题解
+                            <a href="/alex-xjy.github.io/categories/%E6%96%87%E5%AD%A6/" class="post-category">
+                                文学
                             </a>
                         
                     </div>
@@ -464,21 +464,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-11
+                    2021-08-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    434
+                    3.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    12 分
                 </div>
                 
 
@@ -498,74 +498,49 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1530/B">题目链接</a></p>
-<h4 id="题目大意">题目大意：</h4>
-<p>求一个h*w的01矩阵，并且使矩阵中的每两个值为<span class="math inline">\(1\)</span>的点 <span class="math inline">\((x1,y1)(x2,y2)\)</span> 满足 <span class="math inline">\(|x1-x2|+|y1-y2|\gt 1\)</span>.</p>
-<h3 id="solution">Solution:</h3>
-<p>本题是贪心思想，考虑枚举每一个点，如果满足要求，则赋值为1 ，否则为0.最终得到的矩阵即为所求，输出即可AC 。</p>
-<h3 id="code">Code:</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="pp">#define ll </span><span class="dt">long</span><span class="pp"> </span><span class="dt">long</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="pp">#define _for</span>(i,a,b)<span class="pp"> </span><span class="cf">for</span>(<span class="dt">int</span><span class="pp"> </span>i=(a);i&lt;=(b);i++)</a>
-<a class="sourceLine" id="cb1-4" title="4"> </a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">namespace</span> FastIOstream&#123;</a>
-<a class="sourceLine" id="cb1-6" title="6">    <span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt; <span class="kw">inline</span> <span class="dt">void</span> read(T &amp;x)&#123;<span class="co">//Fast read</span></a>
-<a class="sourceLine" id="cb1-7" title="7">        x=<span class="dv">0</span>;<span class="dt">int</span> f=<span class="dv">1</span>;<span class="dt">char</span> c=getchar();</a>
-<a class="sourceLine" id="cb1-8" title="8">        <span class="cf">for</span>(;!isdigit(c);)&#123;<span class="cf">if</span>(c==<span class="ch">&#39;-&#39;</span>)f=-<span class="dv">1</span>;c=getchar();&#125;</a>
-<a class="sourceLine" id="cb1-9" title="9">        <span class="cf">for</span>(;isdigit(c);)&#123;x=(x&lt;&lt;<span class="dv">1</span>)+(x&lt;&lt;<span class="dv">3</span>)+c-<span class="dv">48</span>;c=getchar();&#125;</a>
-<a class="sourceLine" id="cb1-10" title="10">        x*=f;<span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb1-11" title="11">    &#125;</a>
-<a class="sourceLine" id="cb1-12" title="12">    <span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt; <span class="dt">void</span> print(T x)&#123;<span class="co">//Fast print</span></a>
-<a class="sourceLine" id="cb1-13" title="13">        <span class="cf">if</span>(x&lt;<span class="dv">0</span>)&#123;x=-x;putchar(<span class="ch">&#39;-&#39;</span>);&#125;<span class="cf">if</span>(x&gt;<span class="dv">9</span>)print((x&gt;&gt;<span class="dv">1</span>)/<span class="dv">5</span>);</a>
-<a class="sourceLine" id="cb1-14" title="14">        putchar(x%<span class="dv">10</span>+<span class="dv">48</span>);<span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb1-15" title="15">    &#125;</a>
-<a class="sourceLine" id="cb1-16" title="16">&#125;</a>
-<a class="sourceLine" id="cb1-17" title="17">     </a>
-<a class="sourceLine" id="cb1-18" title="18"><span class="kw">using</span> <span class="kw">namespace</span> std;</a>
-<a class="sourceLine" id="cb1-19" title="19"><span class="kw">using</span> <span class="kw">namespace</span> FastIOstream;</a>
-<a class="sourceLine" id="cb1-20" title="20"> </a>
-<a class="sourceLine" id="cb1-21" title="21"><span class="dt">int</span> t,f[<span class="dv">25</span>][<span class="dv">25</span>],tf[<span class="dv">25</span>][<span class="dv">25</span>];</a>
-<a class="sourceLine" id="cb1-22" title="22"> </a>
-<a class="sourceLine" id="cb1-23" title="23"><span class="dt">bool</span> check(<span class="dt">int</span> x,<span class="dt">int</span> y,<span class="dt">int</span> n,<span class="dt">int</span> m)&#123;</a>
-<a class="sourceLine" id="cb1-24" title="24">    <span class="cf">if</span>(f[x][y]||f[x-<span class="dv">1</span>][y]||f[x][y-<span class="dv">1</span>]||f[x+<span class="dv">1</span>][y]||f[x][y+<span class="dv">1</span>]||f[x+<span class="dv">1</span>][y+<span class="dv">1</span>]||f[x-<span class="dv">1</span>][y-<span class="dv">1</span>]||f[x-<span class="dv">1</span>][y+<span class="dv">1</span>]||f[x+<span class="dv">1</span>][y-<span class="dv">1</span>])<span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-25" title="25">    <span class="cf">return</span> <span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-26" title="26">&#125;</a>
-<a class="sourceLine" id="cb1-27" title="27">     </a>
-<a class="sourceLine" id="cb1-28" title="28"><span class="dt">signed</span> main()&#123;</a>
-<a class="sourceLine" id="cb1-29" title="29">    read(t);</a>
-<a class="sourceLine" id="cb1-30" title="30">    <span class="cf">for</span>(<span class="dt">int</span> T=<span class="dv">1</span>;T&lt;=t;T++)&#123;</a>
-<a class="sourceLine" id="cb1-31" title="31">        memset(tf,<span class="dv">0</span>,<span class="kw">sizeof</span>(tf));</a>
-<a class="sourceLine" id="cb1-32" title="32">        <span class="dt">int</span> n,m,ans=<span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-33" title="33">        read(n);</a>
-<a class="sourceLine" id="cb1-34" title="34">        read(m);</a>
-<a class="sourceLine" id="cb1-35" title="35">        <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=n;i++)&#123;</a>
-<a class="sourceLine" id="cb1-36" title="36">            tf[i][<span class="dv">1</span>]=<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-37" title="37">            tf[i][m]=<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-38" title="38">        &#125;</a>
-<a class="sourceLine" id="cb1-39" title="39">        <span class="cf">for</span>(<span class="dt">int</span> j=<span class="dv">1</span>;j&lt;=m;j++)&#123;</a>
-<a class="sourceLine" id="cb1-40" title="40">            tf[<span class="dv">1</span>][j]=<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-41" title="41">            tf[n][j]=<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-42" title="42">        &#125;</a>
-<a class="sourceLine" id="cb1-43" title="43">        <span class="dt">int</span> x=n&gt;&gt;<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-44" title="44">        <span class="cf">if</span>(n&amp;<span class="dv">1</span>)x++; </a>
-<a class="sourceLine" id="cb1-45" title="45">        <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=n;i++)&#123;</a>
-<a class="sourceLine" id="cb1-46" title="46">            <span class="cf">for</span>(<span class="dt">int</span> j=<span class="dv">1</span>;j&lt;=m;j++)&#123;</a>
-<a class="sourceLine" id="cb1-47" title="47">                <span class="cf">if</span>(tf[i][j]&amp;&amp;check(i,j,n,m))&#123;</a>
-<a class="sourceLine" id="cb1-48" title="48">                    ans++;</a>
-<a class="sourceLine" id="cb1-49" title="49">                    f[i][j]=<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-50" title="50">                &#125;</a>
-<a class="sourceLine" id="cb1-51" title="51">            &#125;</a>
-<a class="sourceLine" id="cb1-52" title="52">        &#125;</a>
-<a class="sourceLine" id="cb1-53" title="53">        <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">1</span>;i&lt;=n;i++)&#123;</a>
-<a class="sourceLine" id="cb1-54" title="54">            <span class="cf">for</span>(<span class="dt">int</span> j=<span class="dv">1</span>;j&lt;=m;j++)&#123;</a>
-<a class="sourceLine" id="cb1-55" title="55">                cout &lt;&lt; f[i][j];</a>
-<a class="sourceLine" id="cb1-56" title="56">                f[i][j]=<span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-57" title="57">            &#125;</a>
-<a class="sourceLine" id="cb1-58" title="58">            puts(<span class="st">&quot; &quot;</span>);</a>
-<a class="sourceLine" id="cb1-59" title="59">        &#125;</a>
-<a class="sourceLine" id="cb1-60" title="60">    &#125;</a>
-<a class="sourceLine" id="cb1-61" title="61">    <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-62" title="62">&#125;</a></code></pre></div>
+                <h1 id="序言">序言</h1>
+<p>本站本来应该是一个学术博客，但本人偏又爱好文学，闲暇之时，经常会去作些文章。又生性懒惰，不想在搭建一个博客，只好将本站亦作为本人的生活文学。但又不想占用太多空间，因此本人所有作品都在此。也算是给科学添几分书香气罢。</p>
+<p>见笑了。</p>
+<h1 id="诗词">诗词</h1>
+<h2 id="水调歌头">水调歌头</h2>
+<p>清明伤节至, 百姓皆心伤。 勾起红尘旧事, 记那番怅惘。 柱杖踏前不忍, 却恐错魂归兮。 鞭马倚车去。 年岁将遒尽, 仰明月太息。</p>
+<p>风飒飒, 木萧萧, 雨溟溟。 一泓春水, 惹得行人苦思量。 竹树交通纵横, 乱坟匿于山岗。 料峭春风起, 枝摇花自怜, 更添几分愁。</p>
+<h2 id="过胡头家村">过胡头家村</h2>
+<p>雾蒙绕青山， 兰芷花满天。 驾车归故里， 阡陌漫紫烟。</p>
+<p><span class="math inline">\(2021/5/19\)</span></p>
+<h1 id="文章">文章</h1>
+<h2 id="微观世界">微观世界</h2>
+<p>记得之前看到过一篇文章,上面讲,语文和历史在本质上是一样的,都是研 究人与环境之间关系的学科。当时我奉其为真理。后来,这个“真理”动摇了。 我想究其原因,却不知从何下手。一次,也许是妙手偶得,答案悄然粗钻进了我 的脑中。语文——不如说是文学,正是宏观历史中的微观世界。</p>
+<p>说实话,每当在读历史时,总会有种少了些什么的感觉。而这缺失的部分, 总能于文学作品中得到弥补。比如说,历史书上,对安史之乱的描述可能仅有一 句“给人民带来了深重的灾难。”。而在文学作品中,通过“惟有乳下孙”的老妪, “十指黑”的卖炭翁,却得以真切感受到战争时,人民之困苦,社会的混乱。 可毕竟,语文历史只不过是两门客观上的学科。在对这两门学科的剖析中, 我明白了一些其他东西。</p>
+<p>这次疫情,在每个人都烙下了深刻的印记,惯于和平的人们从此次“战争” 中得到了思想的升华。疫情期间,学校组织了一次作文征集活动。我也参与其中, 并登上校刊。作为回报,我拿到了一本。上面收录着从初一到高三优秀的学生作 品。回家后,我看了几篇其中的作品。无外乎,都是在赞美白衣天使,钟南山或 是李兰娟。这倒也没错,只是有些千篇一律了——虽我也如此。但过了几个月后, 我的意见却变化了。至于为何,先从一部电影说起。</p>
+<p>一直以来,中国的科幻电影事业总是不被看好,事实也的确如此。直到一九 年时,《流浪地球》的横空出世打破了这一局面,票房大卖。为什么这部电影能够 取得如此成就?在大多数人看来,这是因其震撼的视效,强大的音响。可在我看来,却不尽然。 在外国,视效大片比比皆是,可评分高的能有几个呢?我想,《流浪地球》的 成功还在于中国人特有的,对故乡的情思,微渺者的刻画。国外,不论是漫威还 是 DC,以及其他的一些科幻作品,都有着极强的英雄主义。套路无非就是地球有 难,拥有超能力的人来拯救地球。而《流浪地球》中,主角不过是一介平民,而 最后拯救世界的,不是一个人,而是全人类。电影中所刻画的,没有超级英雄, 高级将领,而是灾难中的微观世界。</p>
+<p>回到这次疫情中的作文,之所以不甚满意,就是因为大家都只看到了电视中 的英雄人物,而忽略了,也忘记了,疫情下的微观世界。那期间的微观世界,或 是你与家长之间的争吵,新冠带来的焦虑,抑或是门口志愿者之间的寒暄,送菜 人到你家门前,你口中的一句谢谢。对于我们来说,这才是更有意义,更有价值 的。</p>
+<p>放下手机,仰望前方,与邻居们一起唠嗑,与家人们欢聚一堂。一起踏雪寻 梅,闻花香,与君共赏,这微观世界。</p>
+<h2 id="under-the-moon">Under the moon</h2>
+<p>月,似乎与中国人中有着一种特别的情思。历来文人的文章中,月似乎是不可少的。 于今,月已然演变成一种代表思乡的意象。我在月光中长大,仔细想罢,我与月也是不可 分的。忽有感,写下此文来记忆其月下的自己。</p>
+<p>幼时,也就是上小学时,尚无晚自习,但白天究竟还是要上课的。于是乎,我只有在 晚上才有机会与伙伴们在一起耍玩。那时,球场是我们游戏的主要场地。虽是球场,倒也 没几人打球,只有一群孩子罢。一些无人没做过的游戏,像捉人,丢沙包,自然是玩过的。 但富有创造力的孩子们也自然不会满足。于是我们便“发明”出来了一些游戏。说来也巧,虽 是我们自己想出来的游戏,长大后与人说起,别人却也玩过,只是叫法不一。这也许就是 许多人的童年如此相似的原因吧。</p>
+<p>因为是晚上,外头很黑。但好在球场有照明灯。灯一打开,广场舞大妈们便会携着音 响,如期而至。而这时,早就在此玩的我们就只得让步了。好在旁边还有一块空场,以供 游玩。冬天,天黑得早,早就来到球场的我们,正准备玩“磕牌”的游戏。也就是大家小时 都玩过的胶牌或纸牌。此时,无光可谓煞景之事。但没有解决不了的问题。其中一个人, 用棍子将电闸门撬了开,随即打开电闸,灯便亮了起来。想必,是因为管理员没想到,有 人会想到自己开灯,所以锁紧。也许,是无人会想到这点——除了孩子。童年总是一个人“脑 洞”最大的时候,不是吗?</p>
+<p>打开灯,我们又能继续玩了。可当广场舞大妈跳完舞,背着音响,回了家,同时也带 走了灯光。那时,还没人去开灯的电闸。生物是能适应环境的。于是,我们发明出了无需 光游戏。其中,令我印象最深的,就属捉迷藏了。在亮光中,玩捉迷藏总不是很尽兴,在 灯熄之后,只剩月光,倒能如愿以偿了。孩子是天生的躲藏高手——他们总能躲在一个你 意想不到的地方。有时,我们找不到,躲起来的人也不出来。到了晚点,我们得回去了, 他却还在那躲着。家长来了,他才会悄声无息的绕道家长身后,叫道: “我在这! ”,接着便是 一顿竹笋炒肉了。 玩完后总是要归家的。与伙伴一起时,天不怕,地不怕,天王老子都敢骂。可自己独 自回家,只有几束微弱的月光可以为你引路时,又是另一番境况了。</p>
+<p>晚上回去时,一般都是九点左右。到那时候,球场的照明灯早就熄了,回去路上,只 有几盏路灯,散发着昏黄而又微弱的光芒。星空中,只有嫦娥与北极星相伴,洒下皎皎月 光。然而,作为一个孩子,暂时还体会不到“暂伴月将影”的兴致。只有一个八九岁的孩童 对漆黑世界的恐惧。</p>
+<p>从球场回家,要经过一条约莫两百米的小路。白月光与淡黄的灯光交织在小路上。在 我走回家时,偶然碰到一个人,黑暗中却看不见他的脸,这让我想起了老故事中来寻仇的 厉鬼。说来也怪,我并不信鬼,却会怕鬼,到现在我仍旧没弄清为什么。每每遇到这种情 形,我会加快脚步,心跳也不由得加快了,直至走到自家楼梯口前,才放慢了脚步。 那会我还没住入电梯房,灯也还是声控的。我家在五楼,走进楼道中,只见漆黑一片。 我大声叫去,整栋楼的灯都亮了起来了。余音在我的耳畔回荡着。随后,我会立即以最快 的速度奔上五楼,每至那时,总感觉有人在追我。一会儿,我便我踏至家门口,从口袋掏 出钥匙,插进钥匙孔,悚然回头一望,想看看是否真的有人在追我,与此同时,迅速转动 钥匙,握住门把手,把门打开。有时候,锁眼因许久没上油,拧不动,就只得敲门,让爸 妈来开了。等待期间,我总是会四处张望,生怕我想象中追我的那个人,会从什么地方窜 出。进入家门后,加快的心跳才逐渐平缓下来。第二天,一觉醒来,昨晚的的经历又会如 梦境一般,被藏入童年记忆深处的某个角落中,数千次这样的经历堆积起来,愈加深刻。 时至今日,这段现今想来啼笑皆非的记忆才被我打捞出,放进硬盘里,成为我一生的永不 忘的记忆。不说小时候,就是现在,我也是极讨厌坐小汽车的——只因车中皮制座椅的味道。因 此,当我坐车时,我只好打开窗,趴在上面,大口吸进窗外充满着大自然的空气。当长途 坐在车上时,总不免无聊,只能盯着天空。晚上时,便有月陪伴我了。望着月,总不免沉 思。有那么一些时候,我似乎是能和古时诗人产生一些共鸣了。那种“暂伴月将影”的感觉像 是涌上了我的脑海。小时候不懂月,只知“呼作白玉盘”,但我却觉着月倒像个大白石,悬挂 于空中。那会儿,还不知地理,不知何为“昼半球”“夜半球”,认为此时全世界都是漆黑一片, 月光则是洒在了黑暗中的每个罅隙中,心中不免生出几分敬畏之心。可当月缺失,又生得 几分可爱,亲切许多了。</p>
+<p>白天时,月落日升,百无聊赖的我就只好望着苍蓝的天空。细细观察,却发现白天也 是有月的。一轮象牙般的洁白之月悬在天空中,只不过她的辉光,已被强烈的日照遮住, 因此她本月也不是很明显了。可即便如此,也有日月同辉之时,太阳神也,有时也不得不 让步嫦娥了。月就如一名腼腆而又热心的女子,只有当太阳歇息时,她才敢出来点亮世界, 而偶然鼓起勇气的她,也会出来与太阳争位。</p>
+<p>观月中,我思考了很多东西,一时是记不起了。而自搬家后,我观月的情思又发生转 变了,这也许会成为我人生的转折。</p>
+<p>初中时,父母为了让我能有更好的学习环境,便搬到“市”里来了。自从到了九江,儿 时的伙伴也再也没联系过了。几年前,月下的无忧记忆再也没有了。小时候,虽那些欢乐 时光大多是在月下,却对月无所感触。现在望月时,时常会勾起儿时的记忆。几分淡淡的 怅惘总会浮于脑中,总感觉十分遗憾。人真是矛盾的动物,小时候盼望快点长大,长大后 却又嫌童年流逝太快。好在不只有我,还有月亮见证了我的童年。这使得我看月时,仍是 能找到儿时的感觉的。只是那种欢乐,那种无忧无虑,那种单纯之心,是再也找不回来了。 步入中学,因为学业,晚上玩耍成了上晚自习,再也不能出去玩了。但只是出去恐怕 也没人了。在班上,我最喜欢的位置莫过于第四组了。每当轮到我坐到第四组时,我总有 种归属感。在这儿,旁边开着窗子,透过窗,可见一轮明月挂天上。幸运的人用童年弥补 一生,不幸之人用一生弥补童年。我想我便是前者吧,每当前路迷茫,想去放弃时,望望 天上的月,望望心中的月,一种来自童年的,来自人类最原始的不知名的力量,总会鼓舞 着我,让我前行。</p>
+<p>昨天晚上,我做了个梦,梦的内容呢,不过是在童年时极其普通的一次玩耍罢。醒来 之后,也不过是有些遗憾,不过是有些惋惜,不过是又点想哭,不过是意识到这又是生活 的一个新起点吧。</p>
+<p><span class="math inline">\(2021/5/2\)</span> 起笔</p>
+<p><span class="math inline">\(2021/5/7\)</span> 完成</p>
+<h1 id="译作">译作</h1>
+<h2 id="离骚">离骚</h2>
+<p>我，不仅是伯庸之子，还是颛顼帝的后人。 那年正月， 岁星运行此时，刚好是庚寅时候， 我降临到了这个世界。 我的父亲呢，见我的生辰， 便给我取了个吉祥的名字——名正则，字灵均。</p>
+<p>不只是上天赐予我内心的美好， 我自己亦在培育自己的修养。 江离芷草被我披挂于身， 并将秋兰作为佩饰，系在腰间。</p>
+<p>时光飞逝啊，我仿佛已追不上， 唯恐岁月不等人。 晨兮，前往阰山拔木兰草， 黄昏，在小洲采摘宿莽。</p>
+<p>日月交替，时光速逝， 春秋轮变，习以为常。 只是怕草木飘零， 美人逐渐老去啊！ 为什么不趁年少力壮， 去改掉这些法度？ 踏上骐骥马驰骋， 来，我为你们引路！</p>
+<p>当年三君品德至善， 所以众贤臣拥护他们。 就如申椒与菌桂交合， 岂止是佩带蕙茝？</p>
+<p>尧舜的光明磊落， 让他得道前行。 桀纣的猖獗， 让他们歪走邪道，寸步难行。 今时奸人的苟且享乐， 让前方道路狭隘又黑暗。 岂是我害怕灾祸？ 我只是为皇室的败落而担心啊！</p>
+<p>我匆忙奔走， 为追随国君。 只可惜那荃草不察吾心， 信谗言而暴怒与我。</p>
+<p>我当然知道直言贤语会为自己招来忧患， 想离开却于心不忍。 苍天为证， 这样只是为楚王啊！ 已期约黄昏相遇， 不料他中途竟改道！ 开始明明说好， 但他却几番后悔逃遁。</p>
+<p>我本不想与其离别， 只是他数次变化已伤我心。 --------------- 暂未完成</p>
+<h1 id="日记">日记</h1>
 
                 
             </div>
@@ -592,7 +567,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://xjyhub.github.io/alex-xjy.github.io/alex-xjy.github.io/2021/08/11/cf1530b/">https://xjyhub.github.io/alex-xjy.github.io/alex-xjy.github.io/2021/08/11/cf1530b/</a>
+                    <a href="https://xjyhub.github.io/alex-xjy.github.io/alex-xjy.github.io/2021/08/11/xue-xi-za-bi/">https://xjyhub.github.io/alex-xjy.github.io/alex-xjy.github.io/2021/08/11/xue-xi-za-bi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -630,8 +605,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/alex-xjy.github.io/tags/Codeforces/">
-                                    <span class="chip bg-color">Codeforces</span>
+                                <a href="/alex-xjy.github.io/tags/%E6%96%87%E5%AD%A6/">
+                                    <span class="chip bg-color">文学</span>
                                 </a>
                             
                         </div>
@@ -676,7 +651,7 @@
         repo: 'Gitalk',
         owner: 'XJYHUB',
         admin: "XJYHUB",
-        id: '2021-08-11T00-30-29',
+        id: '2021-08-11T00-30-04',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -969,13 +944,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/alex-xjy.github.io/2021/08/11/euler-han-shu-chu-bu/">
+                <a href="/alex-xjy.github.io/2021/08/11/cf1108c/">
                     <div class="card-image">
                         
                         
-                        <img src="/alex-xjy.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="Euler函数初步">
+                        <img src="/alex-xjy.github.io/medias/featureimages/8.jpg" class="responsive-img" alt="CF1108C">
                         
-                        <span class="card-title">Euler函数初步</span>
+                        <span class="card-title">CF1108C</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -992,8 +967,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/alex-xjy.github.io/categories/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" class="post-category">
-                                    数学知识
+                            <a href="/alex-xjy.github.io/categories/%E9%A2%98%E8%A7%A3/" class="post-category">
+                                    题解
                                 </a>
                             
                             
@@ -1003,8 +978,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/alex-xjy.github.io/tags/%E6%95%B0%E8%AE%BA/">
-                        <span class="chip bg-color">数论</span>
+                    <a href="/alex-xjy.github.io/tags/Codeforces/">
+                        <span class="chip bg-color">Codeforces</span>
                     </a>
                     
                 </div>
@@ -1018,13 +993,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/alex-xjy.github.io/2021/08/11/cf1108c/">
+                <a href="/alex-xjy.github.io/2021/08/11/cf1557a/">
                     <div class="card-image">
                         
                         
-                        <img src="/alex-xjy.github.io/medias/featureimages/8.jpg" class="responsive-img" alt="CF1108C">
+                        <img src="/alex-xjy.github.io/medias/featureimages/8.jpg" class="responsive-img" alt="CF1557A">
                         
-                        <span class="card-title">CF1108C</span>
+                        <span class="card-title">CF1557A</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
